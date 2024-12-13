@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TicTacToeGame() {
-    // Define consistent colors and font
     val backgroundColor = Color(0xFFE9EDC9)
     val textColor = Color(0xFF003049)
     val appFont = FontFamily(Font(R.font.delaghotic))
