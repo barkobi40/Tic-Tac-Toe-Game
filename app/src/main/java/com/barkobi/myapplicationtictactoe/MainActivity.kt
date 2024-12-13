@@ -1,5 +1,6 @@
 package com.barkobi.myapplicationtictactoe
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -42,6 +44,7 @@ fun TicTacToeGame() {
     var board by remember { mutableStateOf(Array(3) { Array(3) { "" } }) }
     var currentPlayer by remember { mutableStateOf("X") }
     var winner by remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -92,6 +95,13 @@ fun TicTacToeGame() {
                                             if (board[row][col].isEmpty() && winner == null) {
                                                 board[row][col] = currentPlayer
                                                 winner = checkWinner(board)
+                                                if (winner != null && winner != "Draw") {
+                                                    // Play sound when someone wins
+                                                    MediaPlayer.create(context, R.raw.win_sound).apply {
+                                                        setOnCompletionListener { release() }
+                                                        start()
+                                                    }
+                                                }
                                                 if (winner == null) {
                                                     currentPlayer = if (currentPlayer == "X") "O" else "X"
                                                 }
