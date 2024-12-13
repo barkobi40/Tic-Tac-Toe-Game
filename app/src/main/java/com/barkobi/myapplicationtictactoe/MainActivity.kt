@@ -34,7 +34,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TicTacToeGame() {
-    // Define the colors
     val backgroundColor = Color(0xFFE9EDC9)
     val textColor = Color(0xFF003049)
 
@@ -75,13 +74,11 @@ fun TicTacToeGame() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Add a frame around the board
             Box(
                 modifier = Modifier
-                    .border(4.dp, textColor, RoundedCornerShape(8.dp)) // Add border as the frame
+                    .border(4.dp, textColor, RoundedCornerShape(8.dp))
                     .padding(8.dp)
             ) {
-                // Display the board
                 Column {
                     for (row in 0..2) {
                         Row {
@@ -171,7 +168,6 @@ fun checkWinner(board: Array<Array<String>>): String? {
     if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2].isNotEmpty())
         return board[0][2]
 
-    // Check for draw
     if (board.all { row -> row.all { it.isNotEmpty() } }) return "Draw"
 
     return null
