@@ -36,10 +36,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TicTacToeGame() {
+    // Define consistent colors and font
     val backgroundColor = Color(0xFFE9EDC9)
     val textColor = Color(0xFF003049)
-
-    val quicksandFont = FontFamily(Font(R.font.delaghotic))
+    val appFont = FontFamily(Font(R.font.delaghotic))
 
     var board by remember { mutableStateOf(Array(3) { Array(3) { "" } }) }
     var currentPlayer by remember { mutableStateOf("X") }
@@ -62,7 +62,7 @@ fun TicTacToeGame() {
                 text = "Tic Tac Toe",
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
-                fontFamily = quicksandFont,
+                fontFamily = appFont,
                 color = textColor,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
@@ -96,7 +96,6 @@ fun TicTacToeGame() {
                                                 board[row][col] = currentPlayer
                                                 winner = checkWinner(board)
                                                 if (winner != null && winner != "Draw") {
-                                                    // Play sound when someone wins
                                                     MediaPlayer.create(context, R.raw.win_sound).apply {
                                                         setOnCompletionListener { release() }
                                                         start()
@@ -113,6 +112,7 @@ fun TicTacToeGame() {
                                         text = board[row][col],
                                         fontSize = 24.sp,
                                         fontWeight = FontWeight.Bold,
+                                        fontFamily = appFont,
                                         color = textColor
                                     )
                                 }
@@ -132,6 +132,7 @@ fun TicTacToeGame() {
                     },
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = appFont,
                     color = textColor
                 )
             } else {
@@ -139,6 +140,7 @@ fun TicTacToeGame() {
                     text = "Player $currentPlayer's Turn",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,
+                    fontFamily = appFont,
                     color = textColor
                 )
             }
@@ -159,6 +161,7 @@ fun TicTacToeGame() {
                     text = "Play Again",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = appFont,
                     color = textColor
                 )
             }
