@@ -153,8 +153,8 @@ fun TicTacToeGame() {
                     winner = null
                 },
                 modifier = Modifier
-                    .width(200.dp)
-                    .height(60.dp)
+                    .width(300.dp)
+                    .height(70.dp)
             ) {
                 Text(
                     text = "Play Again",
